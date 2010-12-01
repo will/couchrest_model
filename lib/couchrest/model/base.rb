@@ -53,7 +53,7 @@ module CouchRest
         unless self['_id'] && self['_rev']
           self['couchrest-type'] = self.class.to_s
         end
-        after_initialize if respond_to?(:after_initialize)
+        after_initialize if respond_to_without_attributes?(:after_initialize)
       end
 
 

@@ -41,6 +41,7 @@ module CouchRest
       module ClassMethods
 
         def property(name, *options, &block)
+          @attribute_cache = nil
           opts = { }
           type = options.shift
           if type.class != Hash

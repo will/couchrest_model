@@ -17,7 +17,7 @@ module CouchRest
 
       module ClassMethods
         def attributes
-          properties.map {|prop| prop.name}
+          @attribute_cache ||= properties.map {|prop| prop.name}
         end
       end
 
@@ -52,6 +52,7 @@ module CouchRest
         value = read_attribute(name)
         !(value.nil? || value == false)
       end
+
 
       ## Support for handling attributes
       #

@@ -27,8 +27,7 @@ module CouchRest #:nodoc:
       end
 
       def write_attribute(name, value)
-        meth = :"#{name}_will_change!"
-        __send__ meth if respond_to? meth
+        attribute_will_change!(name)
         super
       end
 
