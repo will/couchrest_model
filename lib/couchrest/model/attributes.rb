@@ -19,11 +19,14 @@ module CouchRest
         def attributes
           @attribute_cache ||= properties.map {|prop| prop.name}
         end
-      end
 
-      def initialize(*args)
-        self.class.attribute_method_suffix *AttributeMethodSuffixes
-        super
+        ## Defines the attribute methods
+        # Only call this after defining all properties and associations.
+        # For more information, see
+        # ActiveModel::AttributeMethods#define_attribute_methods
+        def finalize!
+          define_attribute_methods(attributes)
+        end
       end
 
       def attributes
