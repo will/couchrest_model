@@ -91,6 +91,7 @@ module CouchRest
               validates_casted_model property.name
             end
             properties << property
+            redefine_attribute_methods
             property
           end
 

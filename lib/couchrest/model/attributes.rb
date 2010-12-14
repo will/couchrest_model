@@ -20,11 +20,13 @@ module CouchRest
           @attribute_cache ||= properties.map {|prop| prop.name}
         end
 
-        ## Defines the attribute methods
-        # Only call this after defining all properties and associations.
+        private
+        ## Redefines the attribute methods
+        # called on each property definition
         # For more information, see
         # ActiveModel::AttributeMethods#define_attribute_methods
-        def finalize!
+        def redefine_attribute_methods
+          undefine_attribute_methods
           define_attribute_methods(attributes)
         end
       end
